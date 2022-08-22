@@ -10,9 +10,25 @@ export const createGame = async (props) =>{
             withCredentials: true
         })
 
-        return props.router.replace('/'+res.data.gameid)
+        return props.router.replace('/game/'+res.data.gameid)
     }
     catch(err){
 
     }
 }
+
+export const getGame = async (props) =>{
+    try{
+        const res = await axios.get('http://localhost:5001/api/game/getGame', {
+            userid: props.userid,
+            name: props.name,
+            gameid: props.gameid
+        },{
+            withCredentials: true
+        })
+    }
+    catch(err){
+
+    }
+}
+
