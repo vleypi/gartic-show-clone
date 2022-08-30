@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { setProfile } from '../redux/slices/profile'
+import { setPreloader } from '../redux/slices/preloader'
 
 
 export const auth = async (dispatch) =>{
@@ -7,12 +9,13 @@ export const auth = async (dispatch) =>{
             withCredentials: true
         })
         dispatch(setProfile(res.data))
-        // dispatch(setPreloader({preloader: false}))
+        dispatch(setPreloader({preloader: false}))
     }
     catch(err){
+        console.log(err)
         if(err.response.data.message === 'UnauthorizedToken'){
             dispatch(setProfile({name: '',email: '',userid: '',token: ''}))
-            // dispatch(setPreloader({preloader: false}))
+            dispatch(setPreloader({preloader: false}))
         }
         else if(err.response.data.message === 'Unauthorized'){
             refreshTokenAuth(auth,dispatch)
@@ -30,7 +33,7 @@ export const refreshTokenAuth = async (request,dispatch) =>{
     }
     catch(err){
         dispatch(setProfile({name: '',email: '',userid: '',token: ''}))
-        // dispatch(setPreloader({prealoder: false}))
+        dispatch(setPreloader({prealoder: false}))
     }
 }
 

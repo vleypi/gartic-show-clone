@@ -1,0 +1,60 @@
+.rooms{
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.rooms h1{
+    font-size: 40px;
+}
+
+.rooms input{
+    width: 100%;
+    background: 0;
+    border: none;
+    border-bottom: 2px #83ccfd solid;
+    padding: 5px 0;
+    margin: 20px 0;
+    font-size: 20px;
+    transition: 0.2s;
+}
+.rooms input:focus{
+    border-bottom: 2px #00568f solid;
+}
+
+.rooms .roomsContainer .room{
+    width: 100%;
+    background: white;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+}
+
+.rooms .roomsContainer .room .roomsInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rooms .roomsContainer .room .roomsInfo .waiting{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: greenyellow;
+    margin: 0 10px;
+}
+
+.rooms .roomsContainer .room .roomsInfo .playing{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    margin: 0 10px;
+}
+
+.rooms .roomsContainer .room .roomsInfo p{
+    margin-right: 10px;
+}
