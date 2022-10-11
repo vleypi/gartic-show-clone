@@ -5,7 +5,6 @@ module.exports = (req,res,next)=>{
         return next()
     }
     try{
-        console.log(2)
         const token = req.body.acc ? req.body.acc : req.body.data.acc
         const refresh = req.body.ref ? req.body.ref : req.body.data.ref
 

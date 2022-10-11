@@ -3,8 +3,26 @@
     margin: 50px auto;
 }
 
-.rooms h1{
+.rooms .roomsHeader h1{
     font-size: 40px;
+}
+
+.rooms .roomsHeader{
+    display: flex;
+    align-items: center;
+}
+
+.rooms .roomsHeader a{
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background: #83ccfd;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .rooms input{

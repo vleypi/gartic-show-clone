@@ -1,11 +1,16 @@
+import Link from 'next/link'
 import React from 'react'
 import styles from '../../styles/rooms.module.css'
 
 
 const Rooms = () => {
+
     return (
         <div className={styles.rooms}>
-            <h1>Комнаты</h1>
+            <div className={styles.roomsHeader}>
+                <h1>Комнаты</h1>
+                <Link href='/create'><a>Создать</a></Link>
+            </div>
             <input placeholder='Поиск комнаты...'/>
             <div className={styles.roomsContainer}>
                 <div className={styles.room}>
