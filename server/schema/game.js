@@ -11,6 +11,18 @@ const schema = new Schema({
             userid: {type: String, required: true}
         }
     ],
+    name: {
+        type: String,
+        required: true
+    },
+    timer: {
+        type: Number,
+        default: 60
+    },
+    ownWords: {
+        type: Boolean,
+        default: false
+    },
     playing: {
         type: Boolean,
         default: false

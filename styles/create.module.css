@@ -1,0 +1,73 @@
+.create{
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.create .createHeader{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create .createHeader h1{
+    font-size: 50px;
+    
+}
+
+.create .createHeader p{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.create .settings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.create .settings .name input, .password input{
+    width: 100%;
+    border-radius: 10px;
+    border: 0.5px #83ccfd solid;
+    padding: 5px 10px;
+    margin: 10px 0;
+}
+
+.create .settings .time{
+    margin-top: 10px;
+    display: flex;
+}
+
+.create .settings .time input{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.create .settings .words{
+    margin-top: 20px;
+    display: flex;
+}
+
+.create .settings .words input{
+    margin-left: 10px;
+}
+
+.create .createBtn{
+    width: 100%;
+}
+
+.create .createBtn button{
+    width: 100%;
+    margin-top: 20px;
+    border: 0;
+    background: #83ccfd;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}

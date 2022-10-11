@@ -1,16 +1,18 @@
 import axios from "axios";
 
-export const createGame = async (props) =>{
+export const createGame = async (props,router) =>{
     try{
         const res = await axios.post('http://localhost:5001/api/game/createGame', {
             userid: props.userid,
             name: props.name,
-            gameid: props.gameid
+            password: props.password,
+            timer: props.timer,
+            ownWords: props.ownWord,
         },{
             withCredentials: true
         })
 
-        return props.router.replace('/game/'+res.data.gameid)
+        return router.replace('/game/'+res.data.newGame.gameid)
     }
     catch(err){
 

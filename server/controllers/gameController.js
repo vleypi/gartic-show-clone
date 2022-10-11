@@ -1,4 +1,6 @@
 const Game = require('../schema/game')
+const User = require('../schema/user')
+const shortid = require('shortid')
 
 class GameController {
 
@@ -13,24 +15,34 @@ class GameController {
 
     async createGame (req,res){
         try{
-            const game = await Game.findOne({gameid: req.body.gameid})
+            const {password,name,timer} = req.body
+            
+            console.log(req.user.id)
 
-            if(game){
-                return res.status(404).json({message: 'This game already exists'})
+            const user = await User.findOne({_id: req.user.id})
+
+
+            if(!user){
+                return res.status(404).json({message: 'Bad request'})
             }
 
             const newGame = new Game({
-                gameid: req.body.gameid,
-                users: [
-                    {userid: req.body.userid, name: req.body.name}
-                ]
+                gameid: shortid.generate(),
+                name,
+                password,
+                timer,
+                users: [{
+                    userid: user.userid,
+                    name: user.name
+                }],
+                ownWords: true
             })
-
             await newGame.save()
-            return res.status(200).json({gameid: req.body.gameid})
+
+            return res.status(200).json({newGame})
         }
         catch(err){
-
+            console.log(err)
             return res.status(404).json({message: 'Bad request'})
         }
     }

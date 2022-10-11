@@ -13,7 +13,11 @@ export const auth = async (dispatch) =>{
     }
     catch(err){
         console.log(err)
-        if(err.response.data.message === 'UnauthorizedToken'){
+        if(!err.response.data){
+            dispatch(setProfile({name: '',email: '',userid: '',token: ''}))
+            dispatch(setPreloader({preloader: false}))
+        }
+        else if(err.response.data.message === 'UnauthorizedToken'){
             dispatch(setProfile({name: '',email: '',userid: '',token: ''}))
             dispatch(setPreloader({preloader: false}))
         }

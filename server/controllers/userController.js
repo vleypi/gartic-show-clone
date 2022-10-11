@@ -43,7 +43,7 @@ class UserController {
             return res.status(400).json({message: 'Bad request'})
         }
     }
-
+    
     async registration(req,res) {
         try{
             const {password,name,email} = req.body
