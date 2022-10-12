@@ -1,0 +1,126 @@
+.game{
+    display: flex;
+    box-sizing: border-box;
+}
+
+.game .canvas{
+    border-radius: 10px;
+    width: 100vw;
+}
+
+.game .management{
+    min-width: 500px;
+    background: rgb(219, 219, 255);
+}
+
+.game .leaderboard{
+    background: rgb(255, 255, 255);
+    margin: 20px;
+    height: 200px;
+    border-radius: 10px;
+    overflow-y: hidden;
+}
+
+.game .leaderboard .leaders{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    
+}
+
+.game .leaderboard .leaders .user{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-bottom: 1px solid rgb(106, 106, 255);
+}
+
+.game .leaderboard .leaders .pts{
+    color: rgb(106, 106, 255);
+}
+
+.game .leaderboard p{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.game .chat{
+    background: rgb(255, 255, 255);
+    margin: 20px;
+    height: 460px;
+    border-radius: 10px;
+}
+.game .chat .messages{
+    height: 90%;
+}
+
+.game .chat .send{
+    height: 10%;
+    display: flex;
+}
+
+.game .chat .send input{
+    width: 70%;
+    border-bottom-left-radius: 10px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    background: #aeaefa;
+    color: white;
+    font-weight: bold;
+}
+
+.game .chat .send button{
+    width: 30%;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    background: rgb(106, 106, 255);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.game .word{
+    background: rgb(255, 255, 255);
+    margin: 20px;
+    height: 180px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: #aeaefa;
+}
+
+.game .word .statement{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin: 10px 0;
+}
+
+.game .word .enterWord input{
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 20px;
+    padding: 10px 10px;
+    font-weight: bold;
+}
+
+.game .word .enterWord button{
+    border: none;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 20px;
+    padding: 10px 10px;
+    font-weight: bold;
+    background: rgb(106, 106, 255);
+    color: white;
+    cursor: pointer;
+}

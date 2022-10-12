@@ -4,9 +4,24 @@ const shortid = require('shortid')
 
 class GameController {
 
-    async getGame (req,res){
+    async getGameById (req,res){
         try{
+            const game = await Game.findOne({gameid: req.body.gameid})
 
+            if(!game){
+                return res.status(404).json({message: 'Bad request'})
+            }
+            
+            const user = await User.findOne({_id: req.user.id})
+
+            if(!user){
+                return res.status(404).json({message: 'Bad request'})
+            }
+            if(!game.users.filter(u=>u.userid === user.userid)){
+                return res.status(404).json({message: 'Bad request'})
+            }
+
+            return res.status(200).json({game: game})
         }
         catch(err){
             return res.status(404).json({message: 'Bad request'})
@@ -16,8 +31,6 @@ class GameController {
     async createGame (req,res){
         try{
             const {password,name,timer} = req.body
-            
-            console.log(req.user.id)
 
             const user = await User.findOne({_id: req.user.id})
 

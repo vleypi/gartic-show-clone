@@ -1,4 +1,5 @@
 import axios from "axios";
+import nookies from 'nookies'
 
 export const createGame = async (props,router) =>{
     try{
@@ -19,18 +20,34 @@ export const createGame = async (props,router) =>{
     }
 }
 
-export const getGame = async (props) =>{
+export const getGameById = async (ctx) =>{
     try{
-        const res = await axios.get('http://localhost:5001/api/game/getGame', {
-            userid: props.userid,
-            name: props.name,
-            gameid: props.gameid
+        const cookies = nookies.get(ctx)
+        
+        const res = await axios.get('http://localhost:5001/api/game/getGameById', {
+            data: {
+                acc: cookies.acc,
+                ref: cookies.ref,
+                gameid: ctx.params.gameid
+            }
         },{
             withCredentials: true
         })
+
+        return {
+            props: {
+                game: res.data
+            }
+        }
     }
     catch(err){
-
+        return errorRedirect
     }
 }
 
+const errorRedirect = {
+    redirect: {
+        permanent: false,
+        destination: "/404",
+    }
+}
