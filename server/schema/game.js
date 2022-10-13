@@ -17,6 +17,9 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    password: {
+        type: String,
+    },
     timer: {
         type: Number,
         default: 60

@@ -1,9 +1,14 @@
 import Link from 'next/link'
 import React from 'react'
 import styles from '../../styles/rooms.module.css'
+import { useState } from 'react'
+import { joinGame } from '../../controllers/gameController'
+import { useRouter } from 'next/router'
 
+const Rooms = ({games}) => {
 
-const Rooms = () => {
+    const [rooms,setRooms] = useState(games)
+    const router = useRouter()
 
     return (
         <div className={styles.rooms}>
@@ -13,30 +18,16 @@ const Rooms = () => {
             </div>
             <input placeholder='Поиск комнаты...'/>
             <div className={styles.roomsContainer}>
-                <div className={styles.room}>
-                    <p>Играем...</p>
-                    <div className={styles.roomsInfo}>
-                        <div className={styles.playing}></div>
-                        <p>1/8</p>
-                        <p>Закрытая</p>
+                {rooms.map((m)=>(
+                    <div className={styles.room} onClick={()=>joinGame({gameid: m.gameid,password: ''},router)}>
+                        <p>{m.name}</p>
+                        <div className={styles.roomsInfo}>
+                            <div className={m.playing ? styles.playing : styles.waiting}></div>
+                            <p>{m.users.length}/8</p>
+                            <p>{m.password ? 'Закрытая' : 'Открытая'}</p>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.room}>
-                    <p>Играем 2...</p>
-                    <div className={styles.roomsInfo}>
-                        <div className={styles.waiting}></div>
-                        <p>3/8</p>
-                        <p>Закрытая</p>
-                    </div>
-                </div>
-                <div className={styles.room}>
-                    <p>Играем 3...</p>
-                    <div className={styles.roomsInfo}>
-                        <div className={styles.waiting}></div>
-                        <p>6/8</p>
-                        <p>Закрытая</p>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     )

@@ -67,7 +67,52 @@ class GameController {
         }
     }
 
-    async 
+    async getGames (req,res){
+        try{
+            const games = await Game.find().limit(10)
+            return res.status(200).json({games})
+        }
+        catch(err){
+            console.log(err)
+            return res.status(404).json({message: 'Bad request'})
+        }
+    }
+
+    async joinGame (req,res){
+        try{
+            const game = await Game.findOne({gameid: req.body.gameid})
+
+            if(!game){
+                return res.status(404).json({message: 'Bad request'})
+            }
+            
+            if(game.playing){
+                return res.status(404).json({message: 'Bad request'})
+            }
+
+            const user = await User.findOne({_id: req.user.id},{name: 1,userid: 1})
+
+            if(!user){
+                return res.status(404).json({message: 'Bad request'})
+            }
+            if(game.users.filter(u=>u.userid == user.userid).length > 0){
+                return res.status(404).json({message: 'Bad request'})
+            }
+
+            await Game.updateOne({_id: game._id},{$push: {"users": {
+                name: user.name,
+                userid: user.userid,
+                pts: 0,
+                color: '#aeaefa'
+            }}})
+
+            return res.status(200).json({game})
+        }
+        catch(err){
+            console.log(err)
+            return res.status(404).json({message: 'Bad request'})
+        }
+    }
 
 }
 

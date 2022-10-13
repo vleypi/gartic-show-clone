@@ -3,6 +3,7 @@ import nookies from 'nookies'
 
 import {socket} from '../auth/AuthLayout'
 
+
 export const createGame = async (props,router) =>{
     try{
         const res = await axios.post('http://localhost:5001/api/game/createGame', {
@@ -18,9 +19,26 @@ export const createGame = async (props,router) =>{
         return router.replace('/game/'+res.data.newGame.gameid)
     }
     catch(err){
+        return errorRedirect
+    }
+}
+
+export const joinGame = async (props,router) =>{
+    try{
+        const res = await axios.post('http://localhost:5001/api/game/joinGame', {
+            gameid: props.gameid,
+            password: props.password
+        },{
+            withCredentials: true
+        })
+
+        return router.replace('/game/'+res.data.game.gameid)
+    }
+    catch(err){
 
     }
 }
+
 
 export const getGameById = async (ctx) =>{
     try{
@@ -41,6 +59,23 @@ export const getGameById = async (ctx) =>{
         return {
             props: {
                 game: res.data
+            }
+        }
+    }
+    catch(err){
+        return errorRedirect
+    }
+}
+
+export const getGames = async (ctx) =>{
+    try{
+        const res = await axios.get('http://localhost:5001/api/game/getGames', {},{
+            withCredentials: true
+        }) 
+
+        return {
+            props: {
+                games: res.data
             }
         }
     }
