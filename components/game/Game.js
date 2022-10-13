@@ -5,14 +5,14 @@ import Leaderboard from './leaderboard/Leaderboard'
 import Chat from './chat/Chat'
 import Word from './word/Word'
 
-const Game = () => {
+const Game = ({game}) => {
     return (
         <div className={styles.game}>
             <Canvas />
             <div className={styles.management}>
-                <Leaderboard />
-                <Chat />
-                <Word />
+                <Leaderboard game={game}/>
+                <Chat game={game}/>
+                <Word game={game}/>
             </div>
         </div>
     )

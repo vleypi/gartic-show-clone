@@ -1,6 +1,8 @@
 import axios from "axios";
 import nookies from 'nookies'
 
+import {socket} from '../auth/AuthLayout'
+
 export const createGame = async (props,router) =>{
     try{
         const res = await axios.post('http://localhost:5001/api/game/createGame', {
@@ -33,6 +35,8 @@ export const getGameById = async (ctx) =>{
         },{
             withCredentials: true
         })
+
+        socket.emit('joinGame',res.data)
 
         return {
             props: {

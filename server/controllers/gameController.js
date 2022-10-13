@@ -12,16 +12,20 @@ class GameController {
                 return res.status(404).json({message: 'Bad request'})
             }
             
-            const user = await User.findOne({_id: req.user.id})
+            if(game.playing){
+                return res.status(404).json({message: 'Bad request'})
+            }
+
+            const user = await User.findOne({_id: req.user.id},{name: 1,userid: 1})
 
             if(!user){
                 return res.status(404).json({message: 'Bad request'})
             }
-            if(!game.users.filter(u=>u.userid === user.userid)){
+            if(game.users.filter(u=>u.userid == user.userid).length < 1){
                 return res.status(404).json({message: 'Bad request'})
             }
 
-            return res.status(200).json({game: game})
+            return res.status(200).json({game,user})
         }
         catch(err){
             return res.status(404).json({message: 'Bad request'})
@@ -46,9 +50,12 @@ class GameController {
                 timer,
                 users: [{
                     userid: user.userid,
-                    name: user.name
+                    name: user.name,
+                    pts: 0,
+                    color: '#aeaefa'
                 }],
-                ownWords: true
+                ownWords: true,
+                owner: user.userid
             })
             await newGame.save()
 
@@ -59,6 +66,8 @@ class GameController {
             return res.status(404).json({message: 'Bad request'})
         }
     }
+
+    async 
 
 }
 

@@ -8,7 +8,9 @@ const schema = new Schema({
     users: [
         {
             name: {type: String, required: true},
-            userid: {type: String, required: true}
+            userid: {type: String, required: true},
+            pts: {type: Number, default: 0},
+            color: {type: String, default: '#aeaefa'}
         }
     ],
     name: {
@@ -26,6 +28,10 @@ const schema = new Schema({
     playing: {
         type: Boolean,
         default: false
+    },
+    owner: {
+        type: String,
+        required: true
     }
 })
 

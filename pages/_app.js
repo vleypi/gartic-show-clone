@@ -2,6 +2,7 @@ import '../styles/global.css'
 import { wrapper } from '../redux/store'
 import { AuthProvider } from '../auth/AuthLayout'
 
+
 const App = ({Component,pageProps,name}) => {
     return (
         <AuthProvider {...pageProps}>

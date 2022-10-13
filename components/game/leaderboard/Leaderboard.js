@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import styles from '../../../styles/game.module.css'
 
-const Leaderboard = () => {
+const Leaderboard = ({game}) => {
 
-    const [users,setUsers] = useState([
-        {
-            userid: 21213,
-            name: 'vova',
-            pts: 3000,
-            color: '#aeaefa'
-        },
-    ])
+    const [users,setUsers] = useState(game.users)
 
     return (
         <div className={styles.leaderboard}>

@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+const server = require('http').Server(app)
+const io = module.exports.io = require('socket.io')(server)
+const socket = require('./socket/socket')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
@@ -20,10 +23,12 @@ app.use(cookieParser())
 
 app.use('/api',router)
 
+io.on('connection', (s)=>socket(s));
+
 const start = async () =>{
     try{
         await mongoose.connect(process.env.MONGO,{ useNewUrlParser: true, useUnifiedTopology: true })
-        app.listen(PORT,()=>console.log(PORT))
+        server.listen(PORT,()=>console.log(PORT))
     }
     catch(err){
         console.log(err)
